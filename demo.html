@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+</head>
+<style>
+*{ margin: 0; padding: 0;}
+#login{ width: 300px; height: 300px; text-align: center; position: absolute; border: 1px solid #000; background: #fff;}
+#login div{ margin-top: 20px;}
+#login .close{ position: absolute; top: -15px; right: 5px; cursor: pointer;}
+.mask{ position: fixed; background: rgba(0,0,0,.5); top: 0; left: 0; right: 0; bottom: 0; display: none;}
+</style>
+<script>
+$(function(){
+	$('#btn').click(function(){
+		$('.mask').fadeIn();
+		var oDiv=$('<div id="login"><div>登录名:<input type="text"/></div><div>密码:<input type="password"/></div><div><input type="button" value="登录"/></div><div class="close">X</div></div>');
+		$('body').append(oDiv);
+		$('#login').css('left',($(window).width()-$('#login').outerWidth())/2);
+		$('#login').css('top',($(window).height()-$('#login').height())/2);
+		
+		$('.close').click(function(){
+			$('#login').remove();
+			$('.mask').fadeOut();
+		});
+		
+		$(window).on('resize scroll',function(){
+			$('#login').css('left',($(window).width()-$('#login').outerWidth())/2+$(window).scrollLeft());
+			$('#login').css('top',($(window).height()-$('#login').height())/2+$(window).scrollTop());
+		});
+		
+	});
+	
+	
+	
+})
+</script>
+<body style="height: 2000px;">
+	<input type="button" value="点击" id="btn"/>
+	<div class="mask"></div>
+</body>
+</html>
